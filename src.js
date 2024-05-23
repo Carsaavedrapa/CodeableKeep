@@ -7,26 +7,38 @@ const addTarget = document.getElementById("add-target")
 function createNote(){
   
   const createNoteBox = document.createElement("div");
-  createNoteBox.id = "note-box"
+    createNoteBox.style.justifyContent = "center"
+    createNoteBox.id = "note-box"
+    createNoteBox.style.background = "red"
+    createNoteBox.style.width = "250px"
+    createNoteBox.style.minHeight = "300px"
 
   const noteTitle = document.createElement("h1")
-  noteTitle.id = "note1"
-  noteTitle.innerHTML = "Note title"
-  
+    noteTitle.id = "note1"
+    noteTitle.innerHTML = "Note title"
+    noteTitle.style.display = "flex"
+    noteTitle.style.flexDirection = "row"
+    noteTitle.style.justifyContent = "center"
+    
   const noteBody = document.createElement("p")
-  noteBody.id = "body1"
-  noteBody.innerHTML = "This is your text!!"
+    noteBody.id = "body1"
+    noteBody.innerHTML = "This is your text!!"
+    noteBody.style.display = "flex"
+    noteBody.style.flexDirection = "row"
+    noteBody.style.justifyContent = "center"
   
-  const deleteNoteBtn = document.createElement("button")
-  deleteNoteBtn.innerHTML = "Delete Note"
+  const deleteNoteBtn = document.createElement("button");
+    deleteNoteBtn.id = "delete-btn";
+    deleteNoteBtn.innerHTML = "Delete Note";
+    deleteNoteBtn.style.display = "flex";
+    deleteNoteBtn.style.justifyContent = "center";
   
-  const target = document.getElementById("note-box");
-
   deleteNoteBtn.addEventListener("click", deleteNote)
 
-  target.append(noteTitle)
-  target.append(noteBody)
-  target.append(deleteNoteBtn)
+
+  createNoteBox.append(noteTitle)
+  createNoteBox.append(noteBody)
+  createNoteBox.append(deleteNoteBtn)
 
   document.body.append(createNoteBox)
 
