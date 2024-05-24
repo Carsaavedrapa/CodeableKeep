@@ -1,4 +1,11 @@
 body{
   background-color: black;
   color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+#add-target{
+  width: 150px;;
 }
