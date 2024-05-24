@@ -1,53 +1,64 @@
+const createNewNote = document.getElementById("add-target");
 
-const addTarget = document.getElementById("add-target")
-//console.log(typeof(pressButton))
+// CREAR NOTAS
 
-// CREATE NOTES FUNCTION
+function createNoteBox() {
+  const noteBox = document.createElement("div");
+  noteBox.style.justifyContent = "center";
+  noteBox.id = "note-box";
+  noteBox.style.background = "red";
+  noteBox.style.width = "250px";
+  noteBox.style.minHeight = "300px";
 
-function createNote(){
-  
-  const createNoteBox = document.createElement("div");
-    createNoteBox.style.justifyContent = "center"
-    createNoteBox.id = "note-box"
-    createNoteBox.style.background = "red"
-    createNoteBox.style.width = "250px"
-    createNoteBox.style.minHeight = "300px"
+  const noteTitleElement = noteTitle();
+  const noteBodyElement = noteBody();
+  const deleteNoteButton = deleteNoteBtn();
 
-  const noteTitle = document.createElement("h1")
-    noteTitle.id = "note1"
-    noteTitle.innerHTML = "Note title"
-    noteTitle.style.display = "flex"
-    noteTitle.style.flexDirection = "row"
-    noteTitle.style.justifyContent = "center"
-    
-  const noteBody = document.createElement("p")
-    noteBody.id = "body1"
-    noteBody.innerHTML = "This is your text!!"
-    noteBody.style.display = "flex"
-    noteBody.style.flexDirection = "row"
-    noteBody.style.justifyContent = "center"
-  
-  const deleteNoteBtn = document.createElement("button");
-    deleteNoteBtn.id = "delete-btn";
-    deleteNoteBtn.innerHTML = "Delete Note";
-    deleteNoteBtn.style.display = "flex";
-    deleteNoteBtn.style.justifyContent = "center";
-  
-  deleteNoteBtn.addEventListener("click", deleteNote)
-
-
-  createNoteBox.append(noteTitle)
-  createNoteBox.append(noteBody)
-  createNoteBox.append(deleteNoteBtn)
-
-  document.body.append(createNoteBox)
-
+  createNote(noteBox, noteTitleElement, noteBodyElement, deleteNoteButton);
 }
-addTarget.addEventListener("click", createNote)
 
-// DELETE NOTES FUNCTION
+function noteTitle() {
+  const title = document.createElement("h1");
+  title.id = "note1";
+  title.innerHTML = "Título de la Nota";
+  title.style.display = "flex";
+  title.style.flexDirection = "row";
+  title.style.justifyContent = "center";
+  return title;
+}
 
-function deleteNote(){
+function noteBody() {
+  const body = document.createElement("p");
+  body.id = "body1";
+  body.innerHTML = "¡Este es tu texto!";
+  body.style.display = "flex";
+  body.style.flexDirection = "row";
+  body.style.justifyContent = "center";
+  return body;
+}
+
+function deleteNoteBtn() {
+  const button = document.createElement("button");
+  button.id = "delete-btn";
+  button.innerHTML = "Eliminar Nota";
+  button.style.display = "flex";
+  button.style.justifyContent = "center";
+  button.addEventListener("click", deleteNote);
+  return button;
+}
+
+function createNote(noteBox, title, body, deleteButton) {
+  noteBox.append(title);
+  noteBox.append(body);
+  noteBox.append(deleteButton);
+  document.body.append(noteBox);
+}
+
+createNewNote.addEventListener("click", createNoteBox);
+
+// FUNCIÓN PARA ELIMINAR NOTAS
+
+function deleteNote() {
   const element = document.getElementById("note-box");
   element.remove();
 }
