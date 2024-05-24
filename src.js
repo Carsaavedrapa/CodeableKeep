@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
       noteBox.appendChild(saveEditBtn);
   }
 
-  
+
   function saveEdit(noteBox, titleInput, bodyInput) {
       const noteTitle = document.createElement("h1");
       noteTitle.className = "note-title";
