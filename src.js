@@ -5,10 +5,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function createNote() {
     const uniqueId = Date.now().toString();
-    const noteTittle = document.getElementById("fname") 
+    const noteTittle = document.getElementById("noteBody") 
     const noteBody = document.getElementById("noteBody")
-  
+    
     if(noteTittle.value == ""){
+        noteTittle.value = "Sin titulo"
+    }
+
+    if(noteBody.value == ""){
         alert("Im sorry, you didnt write any note!!")
         return
     }
@@ -27,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     console.log(noteBodyValue.value)
         const noteTittleValue = document.createElement("h1")
-        noteTittleValue.value = document.getElementById("fname").value
+        noteTittleValue.value = document.getElementById("noteTitle").value
         noteTittleValue.innerHTML = noteTittleValue.value
         
         // print whats contain noteTIttleValue 
