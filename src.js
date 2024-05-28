@@ -25,10 +25,13 @@ document.addEventListener("DOMContentLoaded", function() {
     noteBodyValue.value = document.getElementById("noteBody").value
     noteBodyValue.innerHTML = noteBodyValue.value
 
+    
     console.log(noteBodyValue.value)
-        const noteTittleValue = document.createElement("h1")
-        noteTittleValue.value = document.getElementById("noteTitle").value
-        noteTittleValue.innerHTML = noteTittleValue.value
+
+    const noteTittleValue = document.createElement("h1");
+    noteTittleValue.value = document.getElementById("noteTitle").value;
+    noteTittleValue.innerHTML = noteTittleValue.value;
+
         if(noteTittleValue.value == ""){
             noteTittleValue.value = "Sin titulo"
             noteTittleValue.innerHTML = noteTittleValue.value
@@ -37,8 +40,8 @@ document.addEventListener("DOMContentLoaded", function() {
         // print whats contain noteTIttleValue 
         console.log(noteTittleValue.value)
         
-        createNoteBox.append(noteTittleValue)
-        createNoteBox.append(noteBodyValue)
+    createNoteBox.append(noteTittleValue)
+    createNoteBox.append(noteBodyValue)
 
     const bodynote = document.querySelector(".body-note");
     noteTittle.value = "";
