@@ -1,15 +1,21 @@
+//KEEPABLE SOURCE CODE
+
 document.addEventListener("DOMContentLoaded", function() {
   const addTarget = document.getElementById("add-target");
 
   addTarget.addEventListener("click", createNote);
 
+// 1-CREATE NOTE FUNCTIONALITIES
+
+//1.1 CREATE NOTE 
+
   function createNote() {
     const uniqueId = Date.now().toString();
-    const noteTittle = document.getElementById("noteTitle") 
-    const noteBody = document.getElementById("noteBody")
+    const noteTittle = document.getElementById("noteTitle");
+    const noteBody = document.getElementById("noteBody");
     
     if(noteBody.value == ""){
-        alert("Im sorry, you didnt write any note!!")
+        alert("Im sorry, you didnt write any note!!");
         return
     }
       const createNoteBox = document.createElement("div");
@@ -34,20 +40,20 @@ document.addEventListener("DOMContentLoaded", function() {
 
         if(noteTittleValue.value == ""){
             noteTittleValue.value = "Sin titulo"
-            noteTittleValue.innerHTML = noteTittleValue.value
+            noteTittleValue.innerHTML = noteTittleValue.value;
         }
         
-        // print whats contain noteTIttleValue 
-        console.log(noteTittleValue.value)
-        
-    createNoteBox.append(noteTittleValue)
-    createNoteBox.append(noteBodyValue)
+    createNoteBox.append(noteTittleValue);
+    createNoteBox.append(noteBodyValue);
 
     const bodynote = document.querySelector(".body-note");
     noteTittle.value = "";
     noteBody.value = "";
     document.body.appendChild(createNoteBox);
   }
+
+
+  //SAVE NOTES FUNCTION
 
   function saveNote(noteBox) {
       const titleInput = noteBox.querySelector(".note-title-input").value;
@@ -86,6 +92,8 @@ document.addEventListener("DOMContentLoaded", function() {
       noteBox.appendChild(deleteBtn);
   }
 
+  //EDIT NOTES FUNCTION
+
   function editNote(noteBox) {
       const noteTitle = noteBox.querySelector(".note-title");
       const noteBody = noteBox.querySelector(".note-body");
@@ -117,6 +125,8 @@ document.addEventListener("DOMContentLoaded", function() {
       noteBox.appendChild(noteBodyInput);
       noteBox.appendChild(saveEditBtn);
   }
+
+//SAVE EDIT FUNCTION
 
   function saveEdit(noteBox, titleInput, bodyInput) {
       const noteTitle = document.createElement("h1");
