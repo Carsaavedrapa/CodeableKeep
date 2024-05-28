@@ -4,8 +4,14 @@ document.addEventListener("DOMContentLoaded", function() {
   addTarget.addEventListener("click", createNote);
 
   function createNote() {
-      const uniqueId = Date.now().toString();
-
+    const uniqueId = Date.now().toString();
+    const noteTittle = document.getElementById("fname") 
+    const noteBody = document.getElementById("noteBody")
+  
+    if(noteTittle.value == ""){
+        alert("Im sorry, you didnt write any note!!")
+        return
+    }
       const createNoteBox = document.createElement("div");
       createNoteBox.style.justifyContent = "center";
       createNoteBox.id = `note-box-${uniqueId}`;
@@ -13,35 +19,27 @@ document.addEventListener("DOMContentLoaded", function() {
       createNoteBox.style.background = "red";
       createNoteBox.style.width = "250px";
       createNoteBox.style.minHeight = "300px";
+      createNoteBox.style.maxHeight = "300px"
 
-      const noteTitleInput = document.createElement("input");
-      noteTitleInput.className = "note-title-input";
-      noteTitleInput.type = "text";
-      noteTitleInput.placeholder = "Enter note title";
-      noteTitleInput.style.display = "block";
-      noteTitleInput.style.margin = "10px auto";
+    const noteBodyValue = document.createElement("p")
+    noteBodyValue.value = document.getElementById("noteBody").value
+    noteBodyValue.innerHTML = noteBodyValue.value
 
-      const noteBodyInput = document.createElement("textarea");
-      noteBodyInput.className = "note-body-input";
-      noteBodyInput.placeholder = "Enter note body";
-      noteBodyInput.style.display = "block";
-      noteBodyInput.style.margin = "10px auto";
+    console.log(noteBodyValue.value)
+        const noteTittleValue = document.createElement("h1")
+        noteTittleValue.value = document.getElementById("fname").value
+        noteTittleValue.innerHTML = noteTittleValue.value
+        
+        // print whats contain noteTIttleValue 
+        console.log(noteTittleValue.value)
+        
+        createNoteBox.append(noteTittleValue)
+        createNoteBox.append(noteBodyValue)
 
-      const saveBtn = document.createElement("button");
-      saveBtn.className = "save-btn";
-      saveBtn.innerHTML = "Save";
-      saveBtn.style.display = "block";
-      saveBtn.style.margin = "10px auto";
-      saveBtn.addEventListener("click", function(event) {
-          event.preventDefault(); // Evitar el comportamiento predeterminado del botón
-          saveNote(createNoteBox);
-      });
-
-      createNoteBox.appendChild(noteTitleInput);
-      createNoteBox.appendChild(noteBodyInput);
-      createNoteBox.appendChild(saveBtn);
-
-      document.body.appendChild(createNoteBox);
+    const bodynote = document.querySelector(".body-note");
+    noteTittle.value = "";
+    noteBody.value = "";
+    document.body.appendChild(createNoteBox);
   }
 
   function saveNote(noteBox) {
@@ -89,8 +87,8 @@ document.addEventListener("DOMContentLoaded", function() {
       noteTitleInput.className = "note-title-input";
       noteTitleInput.type = "text";
       noteTitleInput.value = noteTitle.innerHTML;
-      noteTitleInput.style.display = "block";
-      noteTitleInput.style.margin = "10px auto";
+/*       noteTitleInput.style.display = "block";
+      noteTitleInput.style.margin = "10px auto"; */
 
       const noteBodyInput = document.createElement("textarea");
       noteBodyInput.className = "note-body-input";
@@ -113,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function() {
       noteBox.appendChild(saveEditBtn);
   }
 
-
   function saveEdit(noteBox, titleInput, bodyInput) {
       const noteTitle = document.createElement("h1");
       noteTitle.className = "note-title";
@@ -126,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const editBtn = document.createElement("button");
       editBtn.className = "edit-btn";
       editBtn.innerHTML = "Edit";
-      editBtn.style.display = "block";
+      editBtn.style.display = "block";x|x
       editBtn.style.margin = "10px auto";
       editBtn.addEventListener("click", function() {
           editNote(noteBox);
@@ -152,68 +149,3 @@ document.addEventListener("DOMContentLoaded", function() {
       noteBox.remove();
   }
 });
-
-const createNewNote = document.getElementById("add-target");
-
-// CREAR NOTAS
-
-function createNoteBox() {
-  const noteBox = document.createElement("div");
-  noteBox.style.justifyContent = "center";
-  noteBox.id = "note-box";
-  noteBox.style.background = "red";
-  noteBox.style.width = "250px";
-  noteBox.style.minHeight = "300px";
-
-  const noteTitleElement = noteTitle();
-  const noteBodyElement = noteBody();
-  const deleteNoteButton = deleteNoteBtn();
-
-  createNote(noteBox, noteTitleElement, noteBodyElement, deleteNoteButton);
-}
-
-function noteTitle() {
-  const title = document.createElement("h1");
-  title.id = "note1";
-  title.innerHTML = "Título de la Nota";
-  title.style.display = "flex";
-  title.style.flexDirection = "row";
-  title.style.justifyContent = "center";
-  return title;
-}
-
-function noteBody() {
-  const body = document.createElement("p");
-  body.id = "body1";
-  body.innerHTML = "¡Este es tu texto!";
-  body.style.display = "flex";
-  body.style.flexDirection = "row";
-  body.style.justifyContent = "center";
-  return body;
-}
-
-function deleteNoteBtn() {
-  const button = document.createElement("button");
-  button.id = "delete-btn";
-  button.innerHTML = "Eliminar Nota";
-  button.style.display = "flex";
-  button.style.justifyContent = "center";
-  button.addEventListener("click", deleteNote);
-  return button;
-}
-
-function createNote(noteBox, title, body, deleteButton) {
-  noteBox.append(title);
-  noteBox.append(body);
-  noteBox.append(deleteButton);
-  document.body.append(noteBox);
-}
-
-createNewNote.addEventListener("click", createNoteBox);
-
-// FUNCIÓN PARA ELIMINAR NOTAS
-
-function deleteNote() {
-  const element = document.getElementById("note-box");
-  element.remove();
-}
