@@ -22,40 +22,67 @@ document.addEventListener("DOMContentLoaded", function() {
       createNoteBox.style.justifyContent = "center";
       createNoteBox.id = `note-box-${uniqueId}`;
       createNoteBox.className = "note-box";
-      createNoteBox.style.background = "red";
+      createNoteBox.style.background = "white";
       createNoteBox.style.width = "250px";
-      createNoteBox.style.minHeight = "300px";
-      createNoteBox.style.maxHeight = "300px"
+      createNoteBox.style.minHeight = "250px";
+      createNoteBox.style.maxHeight = "250px"
+      createNoteBox.style.color ="black"
 
     const noteBodyValue = document.createElement("p")
-    noteBodyValue.value = document.getElementById("noteBody").value
-    noteBodyValue.innerHTML = noteBodyValue.value
+    noteBodyValue.className = "note-body";
+    noteBodyValue.innerHTML = noteBody.value;
 
-    
-    console.log(noteBodyValue.value)
+    const noteTitleValue = document.createElement("h1");
+    noteTitleValue.className = "note-title";
+    noteTitleValue.innerHTML = noteTittle.value || "Sin titulo";
 
-    const noteTittleValue = document.createElement("h1");
-    noteTittleValue.value = document.getElementById("noteTitle").value;
-    noteTittleValue.innerHTML = noteTittleValue.value;
 
-        if(noteTittleValue.value == ""){
-            noteTittleValue.value = "Sin titulo"
-            noteTittleValue.innerHTML = noteTittleValue.value;
-        }
-        
-    createNoteBox.append(noteTittleValue);
+    // Create Save button
+    const saveBtn = document.createElement("button");
+    saveBtn.className = "save-btn";
+    saveBtn.innerHTML = "Save";
+    saveBtn.style.display = "block";
+    saveBtn.style.margin = "10px auto";
+    saveBtn.addEventListener("click", function() {
+        saveNote(createNoteBox);
+    });
+
+    // Create Edit button
+    const editBtn = document.createElement("button");
+    editBtn.className = "edit-btn";
+    editBtn.innerHTML = "Edit";
+    editBtn.style.display = "block";
+    editBtn.style.margin = "10px auto";
+    editBtn.addEventListener("click", function() {
+        editNote(createNoteBox);
+    });
+
+    // Create Delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "delete-btn";
+    deleteBtn.innerHTML = "Delete";
+    deleteBtn.style.display = "block";
+    deleteBtn.style.margin = "10px auto";
+    deleteBtn.addEventListener("click", function() {
+        deleteNote(createNoteBox);
+    });
+
+    createNoteBox.append(noteTitleValue);
     createNoteBox.append(noteBodyValue);
+    createNoteBox.append(saveBtn);
+    createNoteBox.append(editBtn);
+    createNoteBox.append(deleteBtn);
 
-    const bodynote = document.querySelector(".body-note");
+    const bodyNote = document.querySelector(".body-note");
     noteTittle.value = "";
     noteBody.value = "";
     document.body.appendChild(createNoteBox);
-  }
+}
 
 
   //SAVE NOTES FUNCTION
 
-  function saveNote(noteBox) {
+function saveNote(noteBox) {
       const titleInput = noteBox.querySelector(".note-title-input").value;
       const bodyInput = noteBox.querySelector(".note-body-input").value;
 
@@ -102,8 +129,6 @@ document.addEventListener("DOMContentLoaded", function() {
       noteTitleInput.className = "note-title-input";
       noteTitleInput.type = "text";
       noteTitleInput.value = noteTitle.innerHTML;
-/*       noteTitleInput.style.display = "block";
-      noteTitleInput.style.margin = "10px auto"; */
 
       const noteBodyInput = document.createElement("textarea");
       noteBodyInput.className = "note-body-input";
@@ -140,7 +165,7 @@ document.addEventListener("DOMContentLoaded", function() {
       const editBtn = document.createElement("button");
       editBtn.className = "edit-btn";
       editBtn.innerHTML = "Edit";
-      editBtn.style.display = "block";x|x
+      editBtn.style.display = "block";
       editBtn.style.margin = "10px auto";
       editBtn.addEventListener("click", function() {
           editNote(noteBox);
